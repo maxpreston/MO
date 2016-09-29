@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+   >
+
+    <LinearLayout
+        android:padding="5dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.85"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/msg_isread_flag"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+
+                 />
+
+            <ImageView
+                android:id="@+id/msg_user_icon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/head_icon" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.15" >
+
+            <TextView
+                android:id="@+id/msg_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:maxEms="7"
+                android:singleLine="true"
+                android:text="Medium Text"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/msg_timetext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/msg_title"
+                android:ellipsize="end"
+                android:maxLength="11"
+                android:singleLine="true"
+                android:text="Small Text"
+                android:textColor="@color/listview_boder"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/msg_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/msg_title"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:ellipsize="end"
+                android:maxEms="20"
+                android:singleLine="true"
+                android:textColor="@color/listview_boder"
+                android:text="TextView" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

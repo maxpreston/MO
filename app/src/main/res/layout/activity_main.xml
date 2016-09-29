@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mo.oa.io.mo.MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/main_toolbar"
+        android:fitsSystemWindows="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/login_btn"
+        >
+        </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_below="@+id/main_toolbar"
+        android:id="@+id/main_content"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <mo.oa.io.mo.Widget.TabSelectorLayout
+            android:id="@+id/main_selectTab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:textSize="13sp"
+            app:DrawblePadding="3dp"
+            app:NormalColor="@android:color/darker_gray"
+            app:SelectColor="@android:color/holo_green_dark" />
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/main_viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/main_selectTab" />
+
+
+    </RelativeLayout>
+</RelativeLayout>

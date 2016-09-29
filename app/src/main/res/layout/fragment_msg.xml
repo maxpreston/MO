@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/msg_default_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/msg_btn_margin"
+            android:layout_weight="1"
+            android:text="@string/msg_default" />
+
+        <Button
+            android:id="@+id/msg_rc_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/msg_btn_margin"
+            android:layout_weight="1"
+            android:text="@string/msg_rc" />
+
+        <Button
+            android:id="@+id/msg_sp_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/msg_btn_margin"
+            android:layout_weight="1"
+            android:text="@string/msg_sp" />
+
+        <Button
+            android:id="@+id/msg_notify_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/msg_btn_margin"
+            android:layout_weight="1"
+            android:text="@string/msg_notify" />
+    </LinearLayout>
+
+    <mo.oa.io.mo.Widget.MultiRefreshLayout
+        android:padding="@dimen/msg_btn_margin"
+        android:id="@+id/comm_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/msg_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </mo.oa.io.mo.Widget.MultiRefreshLayout>
+
+</LinearLayout>

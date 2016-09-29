@@ -1,0 +1,352 @@
+<resources>
+    <string name="app_name">MO</string>
+    <string name="about_detail">	    名称:江西国税移动办公平台\n开发单位:中国软件OA事业部Android开发小组\n开发人员:张佳晨，张铭心，邹奇\n联系电话:1393939999\n
+</string>
+    <string name="submitbackness">提交反馈</string>
+    <string name="checkversionbtn">检查更新</string>
+    <string name="writeBackTohere">在此输入反馈信息</string>
+    <string name="backnessTitle">反馈建议</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <!-- ************************************************************************************************************************************ -->
+    <!-- 用户简单登录 -->
+    <string name="Request_simpleLogin">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/ignoreValidateUser.do?reqCode=userEasyLogin</string>
+    <!-- 获取用户头像 -->
+    <string name="Request_getUserheadIcon">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/validateUser.do?reqCode=getUserPortraitByUserid</string>
+    <!-- 上传公告附件和封面 -->
+    <string name="Request_uploadggfile">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/noticeApply.do?reqCode=uploadCoverAndFJForNotice</string>
+    <string name="upfileandfm">http://192.168.1.31:80/MobileMangers/service/noticeApply.do?reqCode=uploadCoverAndFJForNotice</string>
+    <!-- 上传头像 -->
+    <string name="Request_uploadheadicon">http://223.71.215.73:8001/ydqz/mobileCtrl/upload.do?URL=/mobile/service/validateUser.do?reqCode=uploadUserPortrait</string>
+    <!-- 后台轮询刷新接口 -->
+    <string name="Request_CircleRefresh">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/noticeApply.do?reqCode=getDataVersionByUserid</string>
+    <!-- 获取用户权限菜单 -->
+    <string name="Request_getUserMenu">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/validateUser.do?reqCode=getMenuResource</string>
+    <!-- 获取某用户最大权限可看到的所有用户 -->
+    <string name="Request_AllUserList">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/cellPhoneBook.do?reqCode=queryAllUsersForLoginUser</string>
+    <string name="Request_AllnewUserList">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/cellPhoneBook.do?reqCode=queryAllUsersForLoginUser</string>
+    <!-- 全局机关列表 -->
+    <string name="Request_alljgAndperson">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/cellPhoneBook.do?reqCode=queryQJswjgForLoginUser</string>
+    <string name="Request_allnewjgAndperson">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/cellPhoneBook.do?reqCode=queryQJswjgForLoginUser</string>
+    <!-- 刪除公告評論 -->
+    <string name="Request_del_remark">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/noticeApply.do?reqCode=deleteComment</string>
+    <!-- 删除公告 -->
+    <string name="Request_del_gg">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/noticeApply.do?reqCode=deleteNotice</string>
+    <!-- 公告评论 -->
+    <string name="Request_ggremark">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/noticeApply.do?reqCode=addComment</string>
+    <!-- 公告评论点赞 -->
+    <string name="Request_gggood">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/noticeApply.do?reqCode=clickComment</string>
+    <!-- 附件获取 -->
+    <string name="Request_getfile">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/validateUser.do?reqCode=getFileInfoByFileid</string>
+    <!-- 发起公告 -->
+    <string name="Request_gg_startNotice">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/noticeApply.do?reqCode=startNotice</string>
+    <string name="Request_ggnewstartNotice">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/noticeApply.do?reqCode=startNotice</string>
+
+    <!-- 公告详情 -->
+    <string name="Request_ggdetail">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/noticeApply.do?reqCode=readNotice</string>
+    <string name="Request_ggnewdetail">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/noticeApply.do?reqCode=readNotice</string>
+    <!-- 查询单条公告详情 -->
+    <string name="Request_one_ggdetail">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/noticeApply.do?reqCode=getNoticeInfoByNoticeid</string>
+    <!-- 公告列表 -->
+    <string name="Request_gglist">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/noticeApply.do?reqCode=getAllPublicNotice</string>
+    <string name="Request_ggnewlist">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/noticeApply.do?reqCode=getAllPublicNotice</string>
+    <!-- 帮助与反馈 -->
+    <string name="RequestBackToUs">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/validateUser.do?reqCode=helpAndFeedback</string>
+    <!-- 激活账户请求路径 -->
+    <string name="RequestJH">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/ignoreValidateUser.do?reqCode=validateUser</string>
+    <!-- 完善信息请求路径 -->
+    <string name="RequestWSXX">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/ignoreValidateUser.do?reqCode=updateUserInfo</string>
+    <!-- 激活账户请求根路径 -->
+    <string name="RequestRootUrl">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/validateUser.do?reqCode=validateUser</string>
+    <!-- 修改密码-验证密码 -->
+    <string name="Request_updatepass1">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/ignoreValidateUser.do?reqCode=validateOldPassword</string>
+    <!-- 校验旧密码是否正确 -->
+    <string name="Request_tempupdatepass1">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/ignoreValidateUser.do?reqCode=validateOldPasswordNewMD5</string>
+    <!-- 修改密码-确认修改密码 -->
+    <string name="Request_updatepass2">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/ignoreValidateUser.do?reqCode=updateLoginPassWordByUserId</string>
+    <!-- 修改密码-确认新密码 -->
+    <string name="Request_tempupdatepass2">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/ignoreValidateUser.do?reqCode=updateLoginPassWordByUseraccount</string>
+    <!-- 登录地址 -->
+    <string name="RequestLogin">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/ignoreValidateUser.do?reqCode=userLogin</string>
+    <!-- 公文登录地址 -->
+    <string name="RequestLogin_gw">http://223.71.215.73:8001/ydqz/OAService.do?URL=odps/services/LoginService/logonIn</string>
+    <!-- 发送验证码 -->
+    <string name="Request_sendCheckCode">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/ignoreValidateUser.do?reqCode=sendAuthCode</string>
+    <!-- 校验验证码 -->
+    <string name="Request_checkCode">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/ignoreValidateUser.do?reqCode=validateAuthCode</string>
+    <!-- 获取个人详细信息 -->
+    <string name="RequestEditPre">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/validateUser.do?reqCode=getUserDetailByUserId</string>
+    <!-- 获取个人全部详细列表 -->
+    <string name="personNodeAll">http://223.71.215.73:8001/ydqz/OAService.do?URL=odps/services/GetTreeNodeService/GetTreeNode</string>
+    <!-- 判断文件是否存在 -->
+    <string name="RequestFileIsExist">http://223.71.215.73:8001/ydqz/OAService.do?URL=odps/services/GetFileService/isFileExist</string>
+    <!-- 将文件转为html -->
+    <string name="RequestFileToHtml">http://223.71.215.73:8001/ydqz/fileController/viewFile.do?URL=/odps/services/GetFileService/getFile?</string>
+    <!-- 获取公文已办列表 -->
+    <string name="RequestWDYBlist">http://223.71.215.73:8001/ydqz/OAService.do?URL=odps/services/DaibanService/SingleDaiban</string>
+    <!-- 获取消息列表 -->
+
+    <string name="RequestMessagelist">http://223.71.215.73:8001/ydqz/mobileCtrl/</string>
+    <string name="Request_msgtemp">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/noticeApply.do?reqCode=getMsgList</string>
+    <!-- 删除消息 -->
+    <string name="Request_delmsg">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/noticeApply.do?reqCode=deleteMsg</string>
+    <!-- 获取已办公文详细信息 -->
+    <string name="RequestWDYBDetail">http://223.71.215.73:8001/ydqz/OAService.do?URL=odps/services/YuelanService/Yuelan</string>
+    <!-- 获取会议审批界面初始化信息 -->
+    <string name="RequestHYSPinitView">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/meetingApply.do?reqCode=queryMeetingInitView</string>
+    <!-- 提交会议审批 -->
+    <string name="Request_hysp_start">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/meetingApply.do?reqCode=tkapplyMeeting</string>
+    <string name="Request_hysp_start_temp">http://223.71.215.73:8001/MobileMangers/service/meetingApply.do?reqCode=tkapplyMeeting</string>
+    <!-- 提交会议审批调试接口 -->
+    <string name="RequestHYSPinitViewtemp">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/meetingApply.do?reqCode=queryMeetingInitView</string>
+    <!-- 修改信息接口 -->
+    <string name="updateuserinfoRequest">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/validateUser.do?reqCode=updateUserDetailByUserId</string>
+    <!-- 请求根地址 -->
+    <string name="rootRequest">http://223.71.215.73:8001/mobile/</string>
+    <!-- 修改个人信息服务 -->
+    <string name="xggrxx">GetActorService/SetActor</string>
+    <!-- 会议同意 -->
+    <string name="RequestHYSP_accept">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/meetingApply.do?reqCode=acceptMeeting</string>
+    <!-- 会议拒绝 -->
+    <string name="RequestHYSP_reject">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/meetingApply.do?reqCode=noAcceptMeeting</string>
+    <!-- 会议评论 -->
+    <string name="RequestHYSP_sppl">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/stampApply.do?reqCode=addCommentStamp</string>
+    <!-- 会议转交 -->
+    <string name="RequestHYSP_zjsp">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/stampApply.do?reqCode=changeActor</string>
+    <!-- 会议撤销 -->
+    <string name="RequestHYSP_canclesp">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/meetingApply.do?reqCode=cancelMeeting</string>
+    <!-- 获取审批人 -->
+    <string name="Request_getspr">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/stampApply.do?reqCode=getApprover</string>
+    <!-- 提交出差申请相关信息根路径 -->
+    <string name="RequestCCSQ">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/tripApply.do?reqCode=startTripApply</string>
+    <!-- 获取用印审批相关信息根路径 -->
+    <string name="RequestYYSP">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/stampApply.do?reqCode=getStampListBySwjgdm</string>
+    <!-- 提交用印审批信息根路径 -->
+    <string name="RequestCommitYYSP">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/stampApply.do?reqCode=startStampApply</string>
+    <!-- 邹奇206/08/03 用印审批添加审批人接口 -->
+    <string name="Request_add_spr">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/stampApply.do?reqCode=getApprover</string>
+    <!-- 获取单个审批单的信息 -->
+    <string name="RequestCommitSP">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/stampApply.do?reqCode=getApplyInfo</string>
+    <!-- 审批单审批的根路径_同意 -->
+    <string name="RequestSP_TY">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/stampApply.do?reqCode=acceptStamp</string>
+    <!-- 审批单审批的根路径_拒绝 -->
+    <string name="RequestSP_JJ">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/stampApply.do?reqCode=noAcceptStamp</string>
+    <!-- 审批单审批的根路径_转交 -->
+    <string name="RequestSP_ZJ">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/stampApply.do?reqCode=changeActor</string>
+    <!-- 审批单审批的根路径_评论 -->
+    <string name="RequestSP_PL">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/stampApply.do?reqCode=addCommentStamp</string>
+    <!-- 审批单审批的根路径_撤销 -->
+    <string name="RequestSP_CX">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/stampApply.do?reqCode=cancelStamp</string>
+    <!-- 审批单审批人获取的根路径 -->
+    <string name="RequestSPR">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/stampApply.do?reqCode=getApprover</string>
+    <!-- 审批【我发起的】路径 -->
+    <string name="Request_WFQD">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/stampApply.do?reqCode=getMyApplyList</string>
+    <!-- 审批【待我审批】路径 -->
+    <string name="Request_DWSP">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/stampApply.do?reqCode=getTodoSpList</string>
+    <!-- 获取个人待办列表的根路径 -->
+    <string name="RequestGRDB">http://223.71.215.73:8001/ydqz/OAService.do?URL=odps/services/DaibanService/SingleDaiban</string>
+    <!-- 出差审批单审批的根路径_同意 -->
+    <string name="RequestCCSP_TY">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/tripApply.do?reqCode=acceptTrip</string>
+    <!-- 出差审批单审批的根路径_拒绝 -->
+    <string name="RequestCCSP_JJ">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/tripApply.do?reqCode=noAcceptTrip</string>
+    <!-- 出差审批单审批的根路径_转交 -->
+    <string name="RequestCCSP_ZJ">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/tripApply.do?reqCode=changeActor</string>
+    <!-- 出差审批单审批的根路径_评论 -->
+    <string name="RequestCCSP_PL">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/tripApply.do?reqCode=addCommentTrip</string>
+    <!-- 出差审批单审批的根路径_撤销 -->
+    <string name="RequestCCSP_CX">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/tripApply.do?reqCode=cancelTrip</string>
+    <!-- 获取文件查询根路径 -->
+    <string name="RequestWJCX">http://223.71.215.73:8001/ydqz/OAService.do?URL=odps/services/SearchService/Search</string>
+    <!-- 获取文件查询详细信息根路径 -->
+    <string name="RequestWJCXDetail">http://223.71.215.73:8001/ydqz/OAService.do?URL=odps/services/SearchService/GetSearchItem</string>
+    <!-- 获取当前用户所属部门根路径 -->
+    <string name="RequestTXLBMInfo">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/cellPhoneBook.do?reqCode=querySwjgmcForLoginUser</string>
+    <!-- 获取好友列表根路径 -->
+    <string name="RequestTXLBuddy">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/cellPhoneBook.do?reqCode=getFriendList</string>
+    <!-- 获取机关部门联系人列表根路径 -->
+    <string name="RequestTXLJG">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/cellPhoneBook.do?reqCode=queryAllUsersForLoginUser</string>
+    <!-- 根据userid从数据库中获取对应的人的数据的接口 -->
+    <string name="UseridGetInfo">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/cellPhoneBook.do?reqCode=queryPersonById</string>
+    <!-- 获取部门联系人列表根路径 -->
+    <string name="RequestTXLBM">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/cellPhoneBook.do?reqCode=queryUsersForLoginUser</string>
+    <!-- 添加或删除好友根路径 -->
+    <string name="RequestTXLFriend">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/cellPhoneBook.do?reqCode=saveOrDeleteFriend</string>
+    <!-- 添加好友同意根路径 -->
+    <string name="RequestTXLUpdateFriend">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/cellPhoneBook.do?reqCode=becomeFriend</string>
+    <!-- 获取日程根路径 -->
+    <string name="RequestRCGL">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/scheduleMgr.do?reqCode=getSchedule</string>
+    <!-- 添加日程根路径 -->
+    <string name="RequestAddRCGL">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/scheduleMgr.do?reqCode=saveSchedule</string>
+    <!-- 更新日程根路径 -->
+    <string name="RequestUpdateRCGL">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/scheduleMgr.do?reqCode=updateSchedule</string>
+    <!-- 删除日程根路径 -->
+    <string name="RequestDeleteRCGL">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/scheduleMgr.do?reqCode=deleteSchedule</string>
+    <!-- 查询单个日程根路径 -->
+    <string name="RequestOneRCGL">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/scheduleMgr.do?reqCode=getAllSchedule</string>
+    <!-- 获取个人待办列表处理单页面信息的根路径 -->
+    <string name="RequestGRDBCLD">http://223.71.215.73:8001/ydqz/OAService.do?URL=odps/services/YuelanService/Yuelan</string>
+    <!-- 办结处理单请求地址根路径 -->
+    <string name="RequestGRDBCLD_BJ">http://223.71.215.73:8001/ydqz/OAService.do?URL=odps/services/DeleteItemService/DeleteItem</string>
+    <!-- 获取我的部门联系人根路径 -->
+    <string name="RequestDepartmentTXL">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/cellPhoneBook.do?reqCode=queryUsersForLoginUser</string>
+    <!-- 发送文件服务，获取接收文件路径，这个接口别随便改变 -->
+    <string name="RequestGRDBCLD_Fs_one">http://223.71.215.73:8001/ydqz/OAService.do?URL=odps/services/SendItemService/GetFlowPath</string>
+    <string name="RequestGRDBCLD_Fs_two">http://223.71.215.73:8001/ydqz/OAService.do?URL=odps/services/SendItemService/GetFlowActorList</string>
+    <string name="RequestGRDBCLD_Fs_thi">http://223.71.215.73:8001/ydqz/OAService.do?URL=odps/services/SendItemService/SendItem</string>
+    <!-- 获取正文、附件和处理意见的详细信息，这个接口别随便改变 -->
+    <string name="RequestGet_zw_fj_clyj">http://223.71.215.73:8001/ydqz/OAService.do?URL=odps/services/GetMemberService/GetMember</string>
+    <!-- 文件是否存在 	邹奇加 -->
+    <string name="Request_isfile_exist">http://223.71.215.73:8001/ydqz/OAService.do?URL=odps/services/GetFileService/isFileExist</string>
+    <!-- 公文下载文件接口 	邹奇加 -->
+    <string name="Request_downLoad_File">http://223.71.215.73:8001/ydqz/fileController/viewFile.do?URL=/odps/services/GetFileService/getFile?</string>
+    <!-- 保存处理意见接口 	邹奇加 -->
+    <string name="Request_save_clyj">http://223.71.215.73:8001/ydqz/OAService.do?URL=odps/services/BianjiService/BianjiItem</string>
+    <!-- 收文办理情况接口 	邹奇加 -->
+    <string name="Request_sw_bl">http://223.71.215.73:8001/ydqz/OAService.do?URL=odps/services/BianjiService/BianjiBlqk</string>
+    <!-- 税务办公系统apk最新版下载地址 -->
+    <string name="RequestDownloadApk">http://223.71.215.73:8001/ydqz/mobileCtrl/download.do?URL=/mobile/service/newVersionOfAPK.do?reqCode=getNewVersionOfAPK</string>
+    <!-- 获取apk最新版本的信息地址 -->
+    <string name="RequestGetVersionInfo">http://223.71.215.73:8001/ydqz/mobileCtrl/callService.do?URL=/mobile/service/newVersionOfAPK.do?reqCode=getNewVersionInfoOfAPK</string>
+    <!-- 获取apk最新版本的信息地址 	小凡测试版 -->
+    <string name="Request_xf_version_info">http://223.71.215.73:8001/MobileMangers/service/newVersionOfAPK.do?reqCode=getNewVersionInfoOfAPK</string>
+    <!-- 税务办公系统apk最新版下载地址	小凡测试版 -->
+    <string name="Request_xf_download_apk">http://223.71.215.73:8001/MobileMangers/service/newVersionOfAPK.do?reqCode=getNewVersionOfAPK</string>
+    <string name="rooturl">http://223.71.215.73:8001/ydqz/mobileCtrl/</string>
+    <string name="simplelogin">callService.do?URL=/mobile/service/ignoreValidateUser.do?reqCode=userEasyLogin</string>
+    <string name="logins">ignoreValidateUser.do?reqCode=userLogin</string>
+    <!-- ************************************************************************************************************************************ -->
+    <!-- 公告标题 -->
+    <string name="remark_fjlist">附件列表</string>
+    <string name="remark_list">评论列表</string>
+    <string name="gg_title">公告标题</string>
+    <string name="gg_person">作者(选填)</string>
+    <string name="gg_content">公告内容</string>
+    <string name="gg_img">添加附件</string>
+    <string name="click_del">(点击删除附件)</string>
+    <string name="ggl_add">点击发起新公告</string>
+    <!-- 验证码登录 -->
+    <string name="stepone_inputnumber">1 输入手机号码</string>
+    <string name="steptwo_inputcheckcode">2 输入验证码登录</string>
+    <string name="stepone_arrright">></string>
+    <string name="send_checkcode">发送验证码</string>
+    <string name="input_username">请输入公文系统账户</string>
+    <string name="input_number">请在此输入您的手机号码</string>
+    <string name="input_checkcode">请在此输入您的验证码</string>
+    <string name="login">登录</string>
+    <string name="username">请输入公文系统账户</string>
+    <string name="password">密码</string>
+    <string name="main_login">登 录</string>
+    <string name="activate_account">激活账户</string>
+    <string name="cannotlogin">无法登录?</string>
+    <string name="loginbycheckcode">使用验证码登录</string>
+
+    <!-- 找回密码 -->
+    <string name="zhmm_tips">请正确输入原密码,并检查两次密码是否输入一致.</string>
+    <string name="zhmm_tip">提示:带"*"均为必填项</string>
+    <string name="comm_tips">tips:请仔细填写要求项信息.</string>
+    <string name="gg_tips">tips:公告附件以及封面暂只可各添加一个.</string>
+    <!-- 出差地点的编辑框文字提示 -->
+    <string name="ccdd_edit_hint">如:北京、 上海、 杭州(必填)</string>
+    <string name="ccts_edit_hint">请输入出差天数（天）</string>
+    <string name="ccsy_edit_hint">请输入出差事由(必填)</string>
+    <string name="ccbz_edit_hint">请输入出差备注</string>
+    <string name="ccsq_start_end_hint">请选择(必填)</string>
+    <string name="ccsq_companions_hint">请选择同行人员</string>
+    <!-- 发文处理 -->
+    <string name="fw_fwtitle">发文处理单</string>
+    <string name="tab_fwxq">处理单类型</string>
+    <string name="tab_fjzw">附件正文</string>
+    <string name="tab_clyj">处理意见</string>
+    <string name="save">保存</string>
+    <string name="ok">确定</string>
+    <string name="reset">重置</string>
+    <string name="tab_finish">办结</string>
+    <string name="send">发送</string>
+    <string name="cancle">取消</string>
+    <string name="back">返回</string>
+    <!-- 审批用印 -->
+    <string name="yybm">用印部门</string>
+    <string name="jbr">经办人</string>
+    <string name="edit_jbr_hint">请填写经办人（必填）</string>
+    <string name="yywjmc">用印文\n件名称</string>
+    <string name="rq">日期</string>
+    <string name="edit_yywjmc_hint">请填写用印文件名称\n（必填）</string>
+    <string name="spsx">审批事项</string>
+    <string name="edit_spsx_hint">请填写审批事项\n（必填）</string>
+    <string name="yzlb">加盖何种印章</string>
+    <string name="bz">备注</string>
+    <string name="edit_bz_hint">请填写备注</string>
+    <string name="hysp_ps">tips:请仔细查看并填写相关信息</string>
+    <!-- 审批用印信息提交后的页面 -->
+    <string name="yysp_commit_back_user">用印申请人</string>
+    <string name="yysp_commit_back_approver">等待审批人审批</string>
+    <string name="yysp_commit_back_spbh">审批编号：</string>
+    <string name="yysp_commit_back_szbm">所在部门：</string>
+    <string name="yysp_commit_back_companions">同行人员：</string>
+    <string name="yysp_commit_back_yybm">用印部门：</string>
+    <string name="yysp_commit_back_jbr">经办人：</string>
+    <string name="yysp_commit_back_date">日期：</string>
+    <string name="yysp_commit_back_yywjmc">用印文件名称：</string>
+    <string name="yysp_commit_back_sealtype">加盖何种印章：</string>
+    <string name="yysp_commit_back_spsx">审批事项</string>
+    <string name="yysp_commit_back_remark">备注：</string>
+    <string name="yysp_commit_back_comment">评论</string>
+    <string name="yysp_commit_back_reverse">转交</string>
+    <string name="yysp_commit_back_jj">拒绝</string>
+    <string name="yysp_commit_back_ty">同意</string>
+    <string name="yysp_commit_back_cx">撤销</string>
+    <string name="my_grzx">个人中心</string>
+    <string name="my_editperinfo">编辑个人信息</string>
+    <string name="my_helpandreback">帮助及反馈</string>
+    <string name="my_about">关于</string>
+    <string name="my_settings">设置</string>
+    <string name="my_exitaccount">退出当前账户</string>
+    <string name="Scan_MyCode">我的二维码名片</string>
+    <string name="Search">搜索</string>
+    <string name="add_friend">加好友</string>
+    <string name="Scanning">扫一扫</string>
+    <string name="FeedBack">反馈与帮助</string>
+    <string name="mark">发表</string>
+    <string name="markhint">说点什么吧...</string>
+    <string name="naxtstep">下一步</string>
+    <string name="prestep">上一步</string>
+    <string name="gg_private_tips">提示:开启保密后,将会成为私有公告,只有接收人才可以看到该公告</string>
+    <string name="submit">提交</string>
+    <!-- *************************************自定义listview ******************************* -->
+    <!-- 自定义组件 -->
+    <string name="lastUpdateTime">最近更新：%s</string>
+    <string name="load_full">已加载全部</string>
+    <string name="no_data">暂无数据</string>
+    <string name="more">加载中</string>
+    <string name="msg_errormsg">ERROR!请求失败点此重试</string>
+    <string name="pull_to_refresh">下拉刷新</string>
+    <string name="release_to_refresh">释放立即刷新</string>
+    <string name="refreshing">正在刷新...</string>
+    <string name="refresh_succeed">刷新成功</string>
+    <string name="refresh_fail">刷新失败</string>
+    <string name="refresh_cancel">中断刷新</string>
+    <string name="pullup_to_load">上拉加载更多</string>
+    <string name="release_to_load">释放立即加载</string>
+    <string name="loading">正在加载...</string>
+    <string name="load_succeed">加载成功</string>
+    <string name="load_fail">加载失败</string>
+    <string name="load_cancel">中断加载</string>
+    <!-- 消除警告，可忽略 -->
+    <string name="d">图片描述</string>
+    <!-- ******************************************************************************** -->
+    <string name="wdyb_loadingerror">数据加载失败,点击重试</string>
+    <!-- 会议审批 -->
+    <string name="sp_yj">请输入审批理由</string>
+    <string name="title_activity_ph_number_search">PhNumberSearchActivity</string>
+    <string name="startEx">开始体验</string>
+
+    <string name="msg_rc">日程消息</string>
+    <string name="msg_sp">审批消息</string>
+    <string name="msg_notify">通知消息</string>
+    <string name="msg_default">默认</string>
+
+
+    <string name="DATA_FROM_DISK">数据来自磁盘</string>
+    <string name="DATA_FROM_CACHE">数据来自内存</string>
+    <string name="DATA_FROM_NET">数据来自网络</string>
+</resources>

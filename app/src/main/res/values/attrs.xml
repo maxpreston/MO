@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TabSelectorLayout">
+        <attr name="DrawblePadding" format="dimension"/>
+        <attr name="NormalColor" format="color"/>
+        <attr name="SelectColor" format="color"/>
+        <attr name="android:textSize"/>
+    </declare-styleable>
+
+    <declare-styleable name="MultiRefreshLayout">
+        <attr name="foreground" format="reference"/>
+    </declare-styleable>
+</resources>

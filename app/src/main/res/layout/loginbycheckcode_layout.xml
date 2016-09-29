@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/loginbycheckcode_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/login_btn" >
+
+        <ImageView
+            android:id="@+id/codelogin_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="14dp"
+            android:clickable="true"
+            android:scaleType="fitXY"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/head_back" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/loginbycheckcode_layout"
+        android:background="#dedede"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/login_bycode_step1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_weight="1"
+            android:text="@string/stepone_inputnumber"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/darkgray" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/stepone_arrright"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/login_btn" />
+
+        <TextView
+            android:id="@+id/login_bycode_step2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/steptwo_inputcheckcode"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/darkgray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:padding="2dp"
+        android:layout_below="@+id/linearLayout2"
+        android:background="@drawable/code_login"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+             >
+
+            <EditText
+                android:id="@+id/swrydmorzh"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_weight="0.3"
+                android:background="@drawable/textenable"
+                android:hint="@string/input_username"
+                android:textSize="14sp"
+                android:inputType="text" >
+
+                <requestFocus />
+            </EditText>
+
+            <Button
+                android:id="@+id/login_bycode_btnsend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:background="@color/white"
+                android:textSize="14sp"
+                android:textColor="@color/login_btn"
+                android:text="@string/send_checkcode"
+                 />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/login_dialog_imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="1.2dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/login_dialog_line_blue" />
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+             >
+
+            <EditText
+                android:id="@+id/CodeNum"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginRight="4dp"
+                android:layout_weight="0.3"
+                android:textSize="14sp"
+                android:background="@drawable/textenable"
+                android:ems="10"
+                android:hint="@string/input_checkcode"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/login_checkcode_btnlogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:text="@string/login"
+                android:background="@color/white"
+                android:textSize="14sp"
+                android:textColor="@color/login_btn" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_focused="true">
+        <shape>
+            <padding android:left="5dp"></padding>
+            <stroke android:width="0.5dp" android:color="@color/login_btn"></stroke>
+            <corners android:radius="5dp"></corners>
+        </shape>
+        </item>
+    <item android:state_focused="false">
+        <shape>
+            <padding android:left="5dp"></padding>
+            <stroke android:width="0.5dp" android:color="@color/white"></stroke>
+            <corners android:radius="5dp"></corners>
+        </shape>
+    </item>
+
+</selector>
