@@ -123,7 +123,7 @@ public class MainActivity extends ToolBarActvity {
         tabSelectorLayout.addTab(TabSelectorLayout.newTab().
                 setNormalDrawable(getResources().getDrawable(R.drawable.my)).
                 setSelectDrawable(getResources().getDrawable(R.drawable.my_f)).
-                setTitle("我的"));
+                setTitle("my"));
         fad.setItems(list);
         vp.setOffscreenPageLimit(4);
         vp.setAdapter(fad);
