@@ -19,4 +19,6 @@ public interface HomeMenuAPI {
 
     @POST("callService.do?URL=/mobile/service/validateUser.do?reqCode=getUserPortraitByUseri")
     Observable getMsgUserIcon(@Query("userid") String userid);
+
+
 }

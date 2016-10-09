@@ -54,7 +54,7 @@ public class LoginByCheckCode extends BaseFragment {
 
     @OnClick(R.id.login_checkcode_btnlogin)
     public void sendCode(){
-        if(TextUtils.isEmpty(codenum.getText().toString())&&TextUtils.isEmpty(username.getText().toString())){
+        if(TextUtils.isEmpty(codenum.getText().toString())||TextUtils.isEmpty(username.getText().toString())){
             showToast("请输入正确信息");
             return ;
         }else{

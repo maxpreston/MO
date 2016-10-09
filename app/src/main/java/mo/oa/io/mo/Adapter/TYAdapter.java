@@ -43,26 +43,27 @@ public class TYAdapter<T> extends RecyclerView.Adapter {
         h.msg_title.setText(list.get(position).msgVo.getMsgTitle());
         h.msg_detail.setText(list.get(position).msgVo.getMsgContent());
         h.msg_time.setText(list.get(position).msgVo.getMsgTime());
-
-        //点击事件
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(clickListener!=null){
-                     clickListener.OnItemClickListener(holder.getLayoutPosition(),view);
+        if (clickListener != null) {
+            //点击事件
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (clickListener != null) {
+                        clickListener.OnItemClickListener(holder.getLayoutPosition(), holder.itemView);
+                    }
                 }
-            }
-        });
-        //长按点击
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                if(clickListener!=null){
-                    clickListener.OnItemLongClickListener(holder.getLayoutPosition(),view);
+            });
+            //长按点击
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    if (clickListener != null) {
+                        clickListener.OnItemLongClickListener(holder.getLayoutPosition(), holder.itemView);
+                    }
+                    return true;
                 }
-                return true;
-            }
-        });
+            });
+        }
     }
 
     //设置list
@@ -76,7 +77,7 @@ public class TYAdapter<T> extends RecyclerView.Adapter {
         return list==null||list.size()==0?0:list.size();
     }
 
-    interface ClickListener{
+    public interface ClickListener{
         public void OnItemClickListener(int position,View view);
         public void OnItemLongClickListener(int position,View view);
     }

@@ -11,27 +11,26 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import com.jakewharton.rxbinding.view.RxView;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import mo.oa.io.mo.Adapter.TYAdapter;
+import mo.oa.io.mo.Adapter.TYAdapter.ClickListener;
 import mo.oa.io.mo.Entities.MessageEntitys;
 import mo.oa.io.mo.Model.MsgListModel;
 import mo.oa.io.mo.R;
 import mo.oa.io.mo.Services.AllServices;
 import mo.oa.io.mo.Statics.StaticsValue;
 import mo.oa.io.mo.UI.Base.CommBaseFragment;
-import mo.oa.io.mo.Utils.LogUtils;
 import mo.oa.io.mo.Utils.PbUtils;
-import mo.oa.io.mo.Widget.MultiRefreshLayout;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.exceptions.OnErrorThrowable;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
@@ -39,7 +38,7 @@ import rx.schedulers.Schedulers;
  * Created by max-code on 2016/9/23.
  */
 
-public class Fragment_Message extends CommBaseFragment {
+public class Fragment_Message extends CommBaseFragment{
 
     @Bind(R.id.msg_rv)
     public RecyclerView recyclerView;
@@ -69,6 +68,7 @@ public class Fragment_Message extends CommBaseFragment {
         super.onViewCreated(view, savedInstanceState);
         //刚进入界面设置为刷新状态
         userid = PbUtils.getLoginMessageUserID(mAct);
+        list = new ArrayList<>();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -80,23 +80,20 @@ public class Fragment_Message extends CommBaseFragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(tyAdapter);
         recyclerView.addOnScrollListener(OnBottomListener(linearLayoutManager));
-        recyclerView.setOnClickListener(clickListener);
+        recycleViewClick();
         LoadNetData(userid,String.valueOf(CurrentStartItem),String.valueOf(CurrentEndItem),msgType);
-    }
+        if(clickViewToTop!=null){
 
-    View.OnClickListener clickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            setIsRefresh(false);
         }
-    };
+    }
 
     RecyclerView.OnScrollListener OnBottomListener(final LinearLayoutManager linearLayoutManager){
 
         return new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                boolean isBottom = linearLayoutManager.findFirstCompletelyVisibleItemPosition() >= tyAdapter.getItemCount();
+                boolean isBottom = linearLayoutManager.findLastCompletelyVisibleItemPosition() >= tyAdapter.getItemCount();
+                ShowSnackBar(recyclerView,"isBottom-->"+isBottom);
                 if(!multiRefreshLayout.isRefreshing()&&isBottom){
                     if(!firstTimeTouchBottom){
                         if(Integer.parseInt(totalCount) == tyAdapter.getItemCount()){
@@ -152,6 +149,7 @@ public class Fragment_Message extends CommBaseFragment {
         Log.e("startItem-->",startItem);
         Log.e("enditem-->",endItem);
         Log.e("msgtype-->",msgtype);
+        setIsRefresh(true);
        // showSnackBar(,"正在加载...");
         sub = AllServices.
                 getMsgList(mAct).
@@ -174,19 +172,29 @@ public class Fragment_Message extends CommBaseFragment {
 //                            } catch (InterruptedException e) {
 //                                e.printStackTrace();
 //                            }
+                            list.clear();
                             //获取总条目
                             totalCount = String.valueOf(backinfo.totalItem);
-                            tyAdapter.setItems(backinfo.list);
+                            list = backinfo.list;
+                            tyAdapter.setItems(list);
                             setIsRefresh(false);
                         }
                     }
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        setIsRefresh(false);
-                        LoadError(throwable);
-                        ShowSnackBar(recyclerView,throwable.getMessage());
-                        CurrentEndItem = Integer.parseInt(endItem);
+                        if(throwable instanceof TimeoutException){
+                            setIsRefresh(false);
+                            LoadError(throwable);
+                            ShowSnackBar(recyclerView,throwable.getMessage());
+                            CurrentEndItem = Integer.parseInt(endItem);
+                        }else{
+                            setIsRefresh(false);
+                            LoadError(throwable);
+                            ShowSnackBar(recyclerView,"未知异常");
+                            CurrentEndItem = Integer.parseInt(endItem);
+                        }
+
                     }
                 });
         AddComSub(sub);
@@ -197,6 +205,22 @@ public class Fragment_Message extends CommBaseFragment {
             msg = "连接错误";
         }
         Snackbar.make(recyclerView,msg,Snackbar.LENGTH_LONG).show();
+    }
+
+    void recycleViewClick(){
+        tyAdapter.setClickListener(new ClickListener() {
+            @Override
+            public void OnItemClickListener(int position, View view) {
+                ShowSnackBar(recyclerView,"删除title-->"+list.get(position).msgVo.getMsgTitle());
+                list.remove(position);
+                tyAdapter.setItems(list);
+            }
+
+            @Override
+            public void OnItemLongClickListener(int position, View view) {
+                ShowSnackBar(recyclerView,"消息time-->"+list.get(position).msgVo.getMsgTime());
+            }
+        });
     }
 
     @Override

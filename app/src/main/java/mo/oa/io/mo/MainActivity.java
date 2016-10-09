@@ -11,13 +11,17 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
+import com.jakewharton.rxbinding.view.RxViewGroup;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnItemClick;
 import mo.oa.io.mo.Adapter.FragmentAdapter;
 import mo.oa.io.mo.UI.Base.BaseActivity;
+import mo.oa.io.mo.UI.Base.ToolBarActvity;
 import mo.oa.io.mo.UI.contactor.Fragment_Contactor;
 import mo.oa.io.mo.UI.homemenu.Fragment_HomeMenu;
 import mo.oa.io.mo.UI.message.Fragment_Message;
@@ -26,7 +30,7 @@ import mo.oa.io.mo.UI.pubboard.Fragment_PubBoard;
 import mo.oa.io.mo.Utils.NoTitle;
 import mo.oa.io.mo.Widget.TabSelectorLayout;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends ToolBarActvity {
     @Bind(R.id.main_viewPager)
     ViewPager vp;
     List<Fragment> list;
@@ -35,27 +39,46 @@ public class MainActivity extends BaseActivity {
 
     private FragmentAdapter fad;
     public View v;
-
-    @Bind(R.id.main_toolbar)
+    private Fragment_Message fragment_message;
+    private Fragment_PubBoard fragment_pubBoard;
+    private Fragment_HomeMenu fragment_homeMenu;
+    private Fragment_Contactor fragment_contactor;
+    private Fragment_PersonalCenter fragment_personalCenter;
+    @Bind(R.id.base_toolbar)
     Toolbar toolbar;
+
+    @Override
+    protected int provideLayoutid() {
+        return R.layout.activity_main;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addLayout(R.layout.activity_main);
 //        NoTitle.getTitle().setStatusView(this,R.color.touming);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            // 设置状态栏透明
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
+
         ButterKnife.bind(this);
-        setToolbar();
+//        setToolbar();
+        fragment_message = new Fragment_Message();
+        fragment_pubBoard = new Fragment_PubBoard();
+        fragment_homeMenu = new Fragment_HomeMenu();
+        fragment_contactor = new Fragment_Contactor();
+        fragment_personalCenter = new Fragment_PersonalCenter();
         init();
     }
 
     void setToolbar(){
-
         //toolbar.inflateMenu(R.menu.menu_main);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        toolbar.setCollapsible(true);
+        toolbar.setNavigationIcon(R.drawable.home);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showToast("navigation被点击");
+            }
+        });
+        toolbar.setSubtitle("哈哈");
         setSupportActionBar(toolbar);
     }
 
@@ -76,11 +99,11 @@ public class MainActivity extends BaseActivity {
     void init(){
         list = new ArrayList<>();
         fad = new FragmentAdapter(getSupportFragmentManager());
-        list.add(new Fragment_Message());
-        list.add(new Fragment_PubBoard());
-        list.add(new Fragment_HomeMenu());
-        list.add(new Fragment_Contactor());
-        list.add(new Fragment_PersonalCenter());
+        list.add(fragment_message);
+        list.add(fragment_pubBoard);
+        list.add(fragment_homeMenu);
+        list.add(fragment_contactor);
+        list.add(fragment_personalCenter);
         tabSelectorLayout.addTab(TabSelectorLayout.newTab().
                 setNormalDrawable(getResources().getDrawable(R.drawable.msg)).
                 setSelectDrawable(getResources().getDrawable(R.drawable.msg_f)).
@@ -102,6 +125,7 @@ public class MainActivity extends BaseActivity {
                 setSelectDrawable(getResources().getDrawable(R.drawable.my_f)).
                 setTitle("我的"));
         fad.setItems(list);
+        vp.setOffscreenPageLimit(4);
         vp.setAdapter(fad);
         vp.setCurrentItem(0);
         tabSelectorLayout.bindViewPager(vp);
@@ -111,5 +135,6 @@ public class MainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
+
     }
 }

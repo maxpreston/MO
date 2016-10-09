@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ public abstract class CommBaseFragment extends Fragment implements SwipeRefreshI
     //提供布局View
     public abstract int addLayoutView();
 
+    public ClickViewToTop clickViewToTop;
     public void SetFresh(){
         if(multiRefreshLayout!=null){
             multiRefreshLayout.setColorSchemeResources(R.color.red,R.color.white,R.color.blue);
@@ -87,6 +89,18 @@ public abstract class CommBaseFragment extends Fragment implements SwipeRefreshI
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mAct = activity;
+        if(activity instanceof ClickViewToTop){
+            clickViewToTop = (ClickViewToTop) activity;
+        }else{
+            throw new IllegalArgumentException("viewToTop为null");
+        }
+
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        clickViewToTop = null;
     }
 
     public MainActivity getMain(){
@@ -164,4 +178,11 @@ public abstract class CommBaseFragment extends Fragment implements SwipeRefreshI
         LogUtils.E(e.getMessage());
     }
 
+    public interface ClickViewToTop{
+        public void clickToTop(RecyclerView view);
+    }
+
+    public void setClickViewToTop(ClickViewToTop clickViewToTop) {
+        this.clickViewToTop = clickViewToTop;
+    }
 }
