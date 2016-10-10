@@ -6,10 +6,10 @@
    >
 
     <LinearLayout
-        android:padding="5dp"
+        android:padding="3dp"
         android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="80dp" >
+        android:layout_height="75dp" >
 
         <RelativeLayout
             android:layout_width="match_parent"

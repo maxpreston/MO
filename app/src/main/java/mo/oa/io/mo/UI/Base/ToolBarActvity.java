@@ -7,11 +7,18 @@ import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
+import com.jakewharton.rxbinding.view.RxView;
+
+import java.util.concurrent.TimeUnit;
+
 import mo.oa.io.mo.R;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 
 /**
  * Created by max-code on 2016/9/24.
@@ -19,7 +26,6 @@ import mo.oa.io.mo.R;
 
 public abstract class ToolBarActvity extends BaseActivity implements CommBaseFragment.ClickViewToTop{
     private RecyclerView recyclerView;
-
     protected Toolbar toolbar;
     protected boolean IsHidden = false;
     abstract protected int provideLayoutid();
@@ -39,12 +45,21 @@ public abstract class ToolBarActvity extends BaseActivity implements CommBaseFra
         if(toolbar==null){
             throw new IllegalStateException("toolbar或appbarLayout为空");
         }
-        toolbar.setOnClickListener(new View.OnClickListener() {
+        RxView.clicks(toolbar).
+                throttleFirst(2000, TimeUnit.MILLISECONDS).//抖去多余两秒内动作
+                observeOn(AndroidSchedulers.mainThread()).//在主线程
+                subscribe(new Action1<Void>() {
             @Override
-            public void onClick(View view) {
+            public void call(Void aVoid) {
                 ToolBarOnClick();
             }
         });
+//        toolbar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ToolBarOnClick();
+//            }
+//        });
         setSupportActionBar(toolbar);
         if(CanBack()){
             ActionBar actionBar = getSupportActionBar();
@@ -83,5 +98,10 @@ public abstract class ToolBarActvity extends BaseActivity implements CommBaseFra
     @Override
     public void clickToTop(RecyclerView view) {
         recyclerView = view;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

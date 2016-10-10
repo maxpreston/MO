@@ -75,7 +75,7 @@ public class MainActivity extends ToolBarActvity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showToast("navigation被点击");
+
             }
         });
         toolbar.setSubtitle("哈哈");

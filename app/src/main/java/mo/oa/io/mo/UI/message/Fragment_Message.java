@@ -29,6 +29,7 @@ import mo.oa.io.mo.Services.AllServices;
 import mo.oa.io.mo.Statics.StaticsValue;
 import mo.oa.io.mo.UI.Base.CommBaseFragment;
 import mo.oa.io.mo.Utils.PbUtils;
+import mo.oa.io.mo.Widget.RecycleItemDecoration;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.exceptions.OnErrorThrowable;
 import rx.functions.Action1;
@@ -50,6 +51,7 @@ public class Fragment_Message extends CommBaseFragment{
     private String msgType = "";
     private boolean firstTimeTouchBottom = true;
     private String userid;
+    private boolean IsTotal = false;
     @Override
     public int addLayoutView() {
         return R.layout.fragment_msg;
@@ -77,13 +79,15 @@ public class Fragment_Message extends CommBaseFragment{
         },100);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mAct);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(tyAdapter);
+        //添加分割线
+        recyclerView.addItemDecoration(new RecycleItemDecoration(mAct,RecycleItemDecoration.VERTICAL_LIST));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addOnScrollListener(OnBottomListener(linearLayoutManager));
         recycleViewClick();
         LoadNetData(userid,String.valueOf(CurrentStartItem),String.valueOf(CurrentEndItem),msgType);
         if(clickViewToTop!=null){
-
+            clickViewToTop.clickToTop(recyclerView);
         }
     }
 
@@ -92,12 +96,13 @@ public class Fragment_Message extends CommBaseFragment{
         return new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                boolean isBottom = linearLayoutManager.findLastCompletelyVisibleItemPosition() >= tyAdapter.getItemCount();
-                ShowSnackBar(recyclerView,"isBottom-->"+isBottom);
+                boolean isBottom = (linearLayoutManager.findLastVisibleItemPosition()+1) >= tyAdapter.getItemCount();
                 if(!multiRefreshLayout.isRefreshing()&&isBottom){
                     if(!firstTimeTouchBottom){
+                        if (IsTotal) return;
                         if(Integer.parseInt(totalCount) == tyAdapter.getItemCount()){
                             showToast("已经加载全部条目");
+                            IsTotal = true;
                             return;
                         }
                         CurrentEndItem +=15 ;
@@ -150,6 +155,7 @@ public class Fragment_Message extends CommBaseFragment{
         Log.e("enditem-->",endItem);
         Log.e("msgtype-->",msgtype);
         setIsRefresh(true);
+        IsTotal = false;
        // showSnackBar(,"正在加载...");
         sub = AllServices.
                 getMsgList(mAct).

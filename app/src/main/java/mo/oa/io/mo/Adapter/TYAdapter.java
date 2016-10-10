@@ -43,6 +43,8 @@ public class TYAdapter<T> extends RecyclerView.Adapter {
         h.msg_title.setText(list.get(position).msgVo.getMsgTitle());
         h.msg_detail.setText(list.get(position).msgVo.getMsgContent());
         h.msg_time.setText(list.get(position).msgVo.getMsgTime());
+
+        h.msg_isread.setBackgroundColor(holder.itemView.getResources().getColor(R.color.red));
         if (clickListener != null) {
             //点击事件
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +71,7 @@ public class TYAdapter<T> extends RecyclerView.Adapter {
     //设置list
     public void setItems(List<MessageEntitys> l){
         this.list = l;
-        notifyDataSetChanged();
+        notifyItemRangeChanged(0,list.size());
     }
 
     @Override

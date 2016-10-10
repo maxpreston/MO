@@ -63,6 +63,7 @@ public class PbUtils {
 	public static final String DeviceFLAG = "flag"; // 登陆信息中登陆标示符所用的KEY
 
 	public static final String LOGINMESSAGE = "loginMessage";
+	public static final String RunTip = "runtip";
 	//头像信息(用于三级缓存)
 	public static final String HEADICONINFO = "headiconinfo";
 	//fileid
@@ -410,6 +411,20 @@ public class PbUtils {
 		SharedPreferences.Editor editor = loginMessage.edit();
 		editor.putString(PbUtils.USERNAME, username);
 		editor.commit();
+	}
+
+	static public void setTipFlag(String runtip, Context activity) {
+		SharedPreferences loginMessage = activity.getSharedPreferences(
+				PbUtils.RunTip, 0);
+		SharedPreferences.Editor editor = loginMessage.edit();
+		editor.putString(PbUtils.RunTip, runtip);
+		editor.commit();
+	}
+
+	static public String getTipFlagE(Context activity) {
+		SharedPreferences loginMessage = activity.getSharedPreferences(
+				PbUtils.RunTip, 0);
+		return loginMessage.getString(PbUtils.RunTip, "");
 	}
 
 	static public String getLoginMessageACCOUNT(Context activity) {
