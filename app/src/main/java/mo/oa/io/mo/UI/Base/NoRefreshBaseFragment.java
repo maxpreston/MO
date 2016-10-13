@@ -10,6 +10,7 @@ import butterknife.Bind;
 import mo.oa.io.mo.MainActivity;
 import mo.oa.io.mo.R;
 import mo.oa.io.mo.Utils.LogUtils;
+import mo.oa.io.mo.Utils.OldDriverBus;
 import mo.oa.io.mo.Widget.MultiRefreshLayout;
 import mo.oa.io.mo.Widget.SwipeRefreshInterFace;
 import rx.Subscription;
@@ -20,6 +21,8 @@ import rx.subscriptions.CompositeSubscription;
  */
 
 public abstract class NoRefreshBaseFragment extends Fragment {
+
+    public OldDriverBus oldDriverBus;
 
     public abstract int addLayoutView();
 
@@ -41,6 +44,9 @@ public abstract class NoRefreshBaseFragment extends Fragment {
         if(this.scompositeSubscription!=null){
             LogUtils.E("解绑了");
             this.scompositeSubscription.unsubscribe();
+        }
+        if(oldDriverBus!=null){
+            oldDriverBus = null;
         }
     }
 
@@ -89,6 +95,8 @@ public abstract class NoRefreshBaseFragment extends Fragment {
         super.onDestroy();
         Unsubscrib();
     }
+
+
 
     public void LoadError(Throwable e){
         LogUtils.E(e.getMessage());

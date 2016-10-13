@@ -24,10 +24,14 @@ public class OldDriverBus {
     public static class RxBusholder{
         private static final OldDriverBus instance = new OldDriverBus();
     }
+    //老司机开车
     public void sendBus(Bundle bundle){
         rxBus.onNext(bundle);
     }
+    //老司机收车
     public Observable<Object> ToObserable(){
         return rxBus;
     }
+    //根据类型进行过滤oftype
+
 }

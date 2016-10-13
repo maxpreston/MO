@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 
-public class MessageEntitys {
+public class MessageEntitys implements Serializable{
 	@SerializedName("fileid")
 	public String fileid;
 	@SerializedName("filename")

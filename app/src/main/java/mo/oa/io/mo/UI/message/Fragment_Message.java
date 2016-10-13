@@ -225,6 +225,7 @@ public class Fragment_Message extends CommBaseFragment{
             @Override
             public void OnItemLongClickListener(int position, View view) {
                 ShowSnackBar(recyclerView,"消息time-->"+list.get(position).msgVo.getMsgTime());
+
             }
         });
     }

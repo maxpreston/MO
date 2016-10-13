@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 import mo.oa.io.mo.MainActivity;
 import mo.oa.io.mo.R;
 import mo.oa.io.mo.Utils.LogUtils;
+import mo.oa.io.mo.Utils.OldDriverBus;
 import mo.oa.io.mo.Widget.MultiRefreshLayout;
 import mo.oa.io.mo.Widget.SwipeRefreshInterFace;
 import rx.Subscription;
@@ -35,7 +36,7 @@ public abstract class CommBaseFragment extends Fragment implements SwipeRefreshI
     private boolean IsRequestDataRefresh = false;
     //提供布局View
     public abstract int addLayoutView();
-
+    public OldDriverBus oldDriverBus;
     public ClickViewToTop clickViewToTop;
     public void SetFresh(){
         if(multiRefreshLayout!=null){
@@ -74,6 +75,9 @@ public abstract class CommBaseFragment extends Fragment implements SwipeRefreshI
         if(this.compositeSubscription!=null){
             LogUtils.E("解绑了");
             this.compositeSubscription.unsubscribe();
+        }
+        if(oldDriverBus!=null){
+            oldDriverBus = null;
         }
     }
 
