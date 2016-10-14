@@ -28,6 +28,7 @@ import mo.oa.io.mo.R;
 import mo.oa.io.mo.Services.AllServices;
 import mo.oa.io.mo.Statics.StaticsValue;
 import mo.oa.io.mo.UI.Base.CommBaseFragment;
+import mo.oa.io.mo.Utils.OldDriverBus;
 import mo.oa.io.mo.Utils.PbUtils;
 import mo.oa.io.mo.Widget.RecycleItemDecoration;
 import rx.android.schedulers.AndroidSchedulers;
@@ -225,7 +226,9 @@ public class Fragment_Message extends CommBaseFragment{
             @Override
             public void OnItemLongClickListener(int position, View view) {
                 ShowSnackBar(recyclerView,"消息time-->"+list.get(position).msgVo.getMsgTime());
-
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("msgvo",list.get(position).msgVo);
+                OldDriverBus.getOldDriver().sendBus(bundle);
             }
         });
     }

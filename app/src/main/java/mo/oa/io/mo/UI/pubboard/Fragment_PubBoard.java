@@ -29,41 +29,55 @@ public class Fragment_PubBoard extends NoRefreshBaseFragment {
     }
     @Bind(R.id.msg_timetext)
     TextView msgtime;
-
+    private boolean isprepery;
     private Bundle intent;
 
     public Fragment_PubBoard() {
     }
 
-
+    @Override
+    public void LazyLoad() {
+        if(!isprepery||!ISVISIABLE){
+            return ;
+        }else{
+            showToast("开始加载公告");
+        }
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(addLayoutView(),container,false);
+        isprepery = true;
         ButterKnife.bind(this,view);
+        LazyLoad();
         TakeBus();
         msgtime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showToast("点击了");
-                intent = new Bundle();
-                intent.putCharSequence("msg","hahaha,sb！");
-                OldDriverBus.getOldDriver().sendBus(intent);
+
+                OldDriverBus.getOldDriver().sendBus("hahaha,sb！");
             }
         });
         return view;
     }
 
     void TakeBus(){
-//        sub = OldDriverBus.getOldDriver().ToObserable().subscribe(new Action1<Object>() {
-//            @Override
-//            public void call(Object msgVo) {
-//                Bundle bun = (Bundle) msgVo;
-//                MsgVo msg = (MsgVo) bun.getSerializable("msgvo");
-//                msgtime.setText(msg.getMsgTime());
-//            }
-//        });
+        sub = OldDriverBus.getOldDriver().ToObserable().subscribe(new Action1<Object>() {
+            @Override
+            public void call(Object msgVo) {
+                Bundle bun = (Bundle) msgVo;
+                MsgVo msg = (MsgVo) bun.getSerializable("msgvo");
+                msgtime.setText(msg.getMsgTime());
+                showToast("改喽");
+            }
+        }, new Action1<Throwable>() {
+            @Override
+            public void call(Throwable throwable) {
+                showToast("错喽");
+            }
+        });
     }
 
     @Override

@@ -20,12 +20,24 @@ public class Fragment_HomeMenu extends NoRefreshBaseFragment {
     public int addLayoutView() {
         return R.layout.timetree_lv_item;
     }
+    private boolean isprepery;
+
+    @Override
+    public void LazyLoad() {
+        if(!isprepery||!ISVISIABLE){
+            return ;
+        }else{
+            showToast("开始加载主菜单");
+        }
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(addLayoutView(),container,false);
+        isprepery = true;
         ButterKnife.bind(this,view);
+        LazyLoad();
         return view;
     }
 }

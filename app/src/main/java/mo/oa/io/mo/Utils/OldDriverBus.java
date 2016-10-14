@@ -25,7 +25,7 @@ public class OldDriverBus {
         private static final OldDriverBus instance = new OldDriverBus();
     }
     //老司机开车
-    public void sendBus(Bundle bundle){
+    public void sendBus(Object bundle){
         rxBus.onNext(bundle);
     }
     //老司机收车

@@ -21,17 +21,35 @@ import rx.subscriptions.CompositeSubscription;
  */
 
 public abstract class NoRefreshBaseFragment extends Fragment {
-
     public OldDriverBus oldDriverBus;
-
     public abstract int addLayoutView();
-
     public static Activity smAct;
     private MainActivity main;
-
+    protected boolean ISVISIABLE;
     private CompositeSubscription scompositeSubscription;
     public Subscription sub;
+    //懒加载
+    protected void Visible(){
+        LazyLoad();
+    }
 
+    protected void InVisible(){
+
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser){
+            ISVISIABLE = true;
+            Visible();
+        }else{
+            ISVISIABLE = false;
+            InVisible();
+        }
+    }
+
+    public abstract void LazyLoad();
     public CompositeSubscription getCompositeSubscription() {
         if(scompositeSubscription == null){
             scompositeSubscription = new CompositeSubscription();

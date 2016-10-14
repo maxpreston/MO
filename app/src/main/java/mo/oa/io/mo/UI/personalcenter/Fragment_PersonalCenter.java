@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
+import mo.oa.io.mo.Entities.MsgVo;
 import mo.oa.io.mo.R;
 import mo.oa.io.mo.UI.Base.CommBaseFragment;
 import mo.oa.io.mo.UI.Base.NoRefreshBaseFragment;
@@ -23,21 +24,33 @@ public class Fragment_PersonalCenter extends NoRefreshBaseFragment {
     public int addLayoutView() {
         return R.layout.timetree_lv_item;
     }
+    private boolean isprepery;
+
+    @Override
+    public void LazyLoad() {
+        if(!isprepery||!ISVISIABLE){
+            return ;
+        }else{
+            showToast("开始加载个人中心");
+            takeBus();
+        }
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(addLayoutView(),container,false);
+        isprepery = true;
         ButterKnife.bind(this,view);
-        takeBus();
+        LazyLoad();
         return view;
     }
     
     void takeBus(){
-        sub = OldDriverBus.getOldDriver().ToObserable().ofType(Integer.class).subscribe(new Action1<Object>() {
+        sub = OldDriverBus.getOldDriver().ToObserable().ofType(Bundle.class).subscribe(new Action1<Object>() {
             @Override
             public void call(Object o) {
-                showToast(((Bundle) o).getString("msg", "无信息") + Fragment_PersonalCenter.this.getClass().getName());
+
             }
         }, new Action1<Throwable>() {
             @Override
