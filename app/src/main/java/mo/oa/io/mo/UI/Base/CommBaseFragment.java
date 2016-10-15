@@ -38,6 +38,27 @@ public abstract class CommBaseFragment extends Fragment implements SwipeRefreshI
     public abstract int addLayoutView();
     public OldDriverBus oldDriverBus;
     public ClickViewToTop clickViewToTop;
+    public abstract void LazyLoad();
+    protected boolean ISVISIble;
+    protected void VISIBLE(){
+
+    }
+    protected void INVISIBLE(){
+
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser){
+            ISVISIble = true;
+            VISIBLE();
+        }else{
+            ISVISIble = false;
+            INVISIBLE();
+        }
+    }
+
     public void SetFresh(){
         if(multiRefreshLayout!=null){
             multiRefreshLayout.setColorSchemeResources(R.color.red,R.color.white,R.color.blue);

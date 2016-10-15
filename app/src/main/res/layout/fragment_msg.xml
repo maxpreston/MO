@@ -48,19 +48,6 @@
         android:layout_height="0.5dp"
         android:background="@color/lightgray" />
 
-    <mo.oa.io.mo.Widget.MultiRefreshLayout
-        android:id="@+id/comm_refresh_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/msg_btn_margin">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/msg_rv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fadeScrollbars="true"
-            android:scrollbars="vertical" />
-
-    </mo.oa.io.mo.Widget.MultiRefreshLayout>
+    <include layout="@layout/comm_base_layout_refresh"/>
 
 </LinearLayout>

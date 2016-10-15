@@ -2,10 +2,12 @@ package mo.oa.io.mo.UI.personalcenter;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import mo.oa.io.mo.Entities.MsgVo;
 import mo.oa.io.mo.R;
@@ -30,9 +32,6 @@ public class Fragment_PersonalCenter extends NoRefreshBaseFragment {
     public void LazyLoad() {
         if(!isprepery||!ISVISIABLE){
             return ;
-        }else{
-            showToast("开始加载个人中心");
-            takeBus();
         }
     }
 
@@ -45,23 +44,23 @@ public class Fragment_PersonalCenter extends NoRefreshBaseFragment {
         LazyLoad();
         return view;
     }
-    
-    void takeBus(){
-        sub = OldDriverBus.getOldDriver().ToObserable().ofType(Bundle.class).subscribe(new Action1<Object>() {
-            @Override
-            public void call(Object o) {
 
-            }
-        }, new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-                showToast("不是String类型");
-            }
-        }, new Action0() {
-            @Override
-            public void call() {
-                showToast("action0");
-            }
-        });
+    //获取网络数据
+    void getRefresh(){
+
+    }
+
+    //初始化相关控件
+
+
+    //老司机方法
+    void takeBus(){
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 }

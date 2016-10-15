@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/appbarlayout_elevation"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ggl_add"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/appbarlayout_elevation"
+        android:layout_marginBottom="@dimen/appbarlayout_elevation"
+        android:background="@color/lightgray"
+        />
+
+    <include layout="@layout/comm_base_layout_refresh"/>
 
 </LinearLayout>

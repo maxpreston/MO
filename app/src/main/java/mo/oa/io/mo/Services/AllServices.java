@@ -66,4 +66,19 @@ public class AllServices {
             return homeMenuAPI;
         }
     }
+    public static HomeMenuAPI getPubList(Context context){
+        synchronized (obj){
+            if(homeMenuAPI==null){
+                Retrofit retrofit = new Retrofit.
+                                    Builder().
+                                    client(okHttpClient).
+                                    baseUrl(context.getString(R.string.rooturl)).
+                                    addConverterFactory(cf).
+                                    addCallAdapterFactory(callf).
+                                    build();
+                homeMenuAPI = retrofit.create(HomeMenuAPI.class);
+            }
+            return homeMenuAPI;
+        }
+    }
 }

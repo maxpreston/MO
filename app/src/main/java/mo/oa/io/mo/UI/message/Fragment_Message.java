@@ -53,9 +53,17 @@ public class Fragment_Message extends CommBaseFragment{
     private boolean firstTimeTouchBottom = true;
     private String userid;
     private boolean IsTotal = false;
+    private boolean isprepery;
     @Override
     public int addLayoutView() {
         return R.layout.fragment_msg;
+    }
+
+    @Override
+    public void LazyLoad() {
+        if(!isprepery||!ISVISIble){
+            return;
+        }
     }
 
     @Nullable
@@ -63,6 +71,8 @@ public class Fragment_Message extends CommBaseFragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(addLayoutView(),container,false);
         ButterKnife.bind(this,view);
+        isprepery = true;
+        LazyLoad();
         return view;
     }
 

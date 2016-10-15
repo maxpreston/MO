@@ -3,6 +3,7 @@ package mo.oa.io.mo.API;
 import java.util.List;
 
 import mo.oa.io.mo.Entities.MessageEntitys;
+import mo.oa.io.mo.Entities.PubEntity;
 import mo.oa.io.mo.Model.MsgListModel;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -19,6 +20,6 @@ public interface HomeMenuAPI {
 
     @POST("callService.do?URL=/mobile/service/validateUser.do?reqCode=getUserPortraitByUseri")
     Observable getMsgUserIcon(@Query("userid") String userid);
-
-
+    @POST("callService.do?URL=/mobile/service/noticeApply.do?reqCode=getAllPublicNotice")
+    Observable<PubEntity> getPubInfo(@Query("startItem") String startItem, @Query("endItem") String endItem, @Query("userid")String userid, @Query("swjgdm")String swjgdm);
 }

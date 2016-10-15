@@ -39,7 +39,7 @@ public class TYAdapter<T> extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
-        MsgViewHolder h = (MsgViewHolder) holder;
+        final MsgViewHolder h = (MsgViewHolder) holder;
         h.msg_title.setText(list.get(position).msgVo.getMsgTitle());
         h.msg_detail.setText(list.get(position).msgVo.getMsgContent());
         h.msg_time.setText(list.get(position).msgVo.getMsgTime());
@@ -51,7 +51,7 @@ public class TYAdapter<T> extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View view) {
                     if (clickListener != null) {
-                        clickListener.OnItemClickListener(holder.getLayoutPosition(), holder.itemView);
+                        clickListener.OnItemClickListener(h.getLayoutPosition(), h.itemView);
                     }
                 }
             });
@@ -60,7 +60,7 @@ public class TYAdapter<T> extends RecyclerView.Adapter {
                 @Override
                 public boolean onLongClick(View view) {
                     if (clickListener != null) {
-                        clickListener.OnItemLongClickListener(holder.getLayoutPosition(), holder.itemView);
+                        clickListener.OnItemLongClickListener(h.getLayoutPosition(), h.itemView);
                     }
                     return true;
                 }

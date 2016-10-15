@@ -1281,4 +1281,7 @@ public class PbUtils {
 			}
 		}).create().show();
 	}
+	public void showAlertDialogWithItem(String[] strs){
+
+	}
 }
