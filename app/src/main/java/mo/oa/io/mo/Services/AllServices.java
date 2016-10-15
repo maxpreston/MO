@@ -73,7 +73,7 @@ public class AllServices {
                                     Builder().
                                     client(okHttpClient).
                                     baseUrl(context.getString(R.string.rooturl)).
-                                    addConverterFactory(cf).
+                                    addConverterFactory(gcf).
                                     addCallAdapterFactory(callf).
                                     build();
                 homeMenuAPI = retrofit.create(HomeMenuAPI.class);
