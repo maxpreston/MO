@@ -211,7 +211,7 @@
     <string name="Request_xf_version_info">http://223.71.215.73:8001/MobileMangers/service/newVersionOfAPK.do?reqCode=getNewVersionInfoOfAPK</string>
     <!-- 税务办公系统apk最新版下载地址	小凡测试版 -->
     <string name="Request_xf_download_apk">http://223.71.215.73:8001/MobileMangers/service/newVersionOfAPK.do?reqCode=getNewVersionOfAPK</string>
-    <string name="rooturl">http://223.71.215.73:8001/ydqz/mobileCtrl/</string>
+    <string name="rooturl">http://ydbg.jxgs.gov.cn:8888/ydqz/mobileCtrl/</string>
     <string name="simplelogin">callService.do?URL=/mobile/service/ignoreValidateUser.do?reqCode=userEasyLogin</string>
     <string name="logins">ignoreValidateUser.do?reqCode=userLogin</string>
     <!-- ************************************************************************************************************************************ -->

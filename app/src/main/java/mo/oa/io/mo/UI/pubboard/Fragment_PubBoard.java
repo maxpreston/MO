@@ -25,6 +25,7 @@ import mo.oa.io.mo.R;
 import mo.oa.io.mo.Services.AllServices;
 import mo.oa.io.mo.UI.Base.CommBaseFragment;
 import mo.oa.io.mo.UI.Base.NoRefreshBaseFragment;
+import mo.oa.io.mo.Utils.LogUtils;
 import mo.oa.io.mo.Utils.OldDriverBus;
 import mo.oa.io.mo.Utils.PbUtils;
 import mo.oa.io.mo.Widget.RecycleItemDecoration;
@@ -51,7 +52,7 @@ public class Fragment_PubBoard extends CommBaseFragment {
     private String userid;
     private PubAdapter pubAdapter = new PubAdapter();
     private boolean firstTimeTouchBottom = true;
-    private boolean isTotal = true;
+    private boolean isTotal = false;
     private int currentstartItem = 1;
     private int currentendItem = 15;
     private int endItem;
@@ -87,7 +88,6 @@ public class Fragment_PubBoard extends CommBaseFragment {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mAct);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(pubAdapter);
-        recyclerView.addItemDecoration(new RecycleItemDecoration(mAct,linearLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addOnScrollListener(OnBottomListener(linearLayoutManager));
         OnClickListener();
@@ -117,13 +117,14 @@ public class Fragment_PubBoard extends CommBaseFragment {
                 boolean isbottom = (linearLayoutManager.findLastVisibleItemPosition()+1)>=pubAdapter.getItemCount();
                 if(!multiRefreshLayout.isRefreshing()&&isbottom){
                     if(!firstTimeTouchBottom){
+                        LogUtils.E("适配器总条数-->"+String.valueOf(pubAdapter.getItemCount()));
                         if(isTotal) return;
                         if(TotalItem == pubAdapter.getItemCount()){
                             showToast("已经加载全部条目");
                             isTotal = true;
                             return;
                         }
-                        endItem = currentendItem+15;
+                        endItem+=15;
                         getRefrsh();
                     }else{
                         firstTimeTouchBottom = false;
@@ -163,6 +164,8 @@ public class Fragment_PubBoard extends CommBaseFragment {
                   @Override
                   public void call(PubEntity pubEntity) {
                       setIsRefresh(false);
+                      LogUtils.E("------------------------------------");
+                      LogUtils.E("flagStr-->"+pubEntity.flagStr);
                       if(pubEntity.flagStr.equals("false")){
                           showToast("未查询到信息");
                           endItem = currentendItem;
@@ -170,7 +173,11 @@ public class Fragment_PubBoard extends CommBaseFragment {
                           showToast("数据查询错误,请稍候再试");
                           endItem = currentendItem;
                       }else{
-                          TotalItem = Integer.parseInt(pubEntity.totalSize);
+                          LogUtils.E("正常");
+                          TotalItem = pubEntity.totalSize;
+                          LogUtils.E("公告总条数-->"+String.valueOf(pubEntity.totalSize));
+                          list.clear();
+                          list = pubEntity.noticeEntityList;
                           pubAdapter.setItems(pubEntity.noticeEntityList);
                       }
                   }

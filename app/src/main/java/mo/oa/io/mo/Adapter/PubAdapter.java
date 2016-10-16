@@ -30,7 +30,7 @@ public class PubAdapter extends RecyclerView.Adapter {
     }
 
     public void setItems(List<NoticeEntity> pubEntityList){
-        this.list.addAll(pubEntityList);
+        this.list = pubEntityList;
         notifyItemRangeChanged(0,list.size());
     }
     @Override
