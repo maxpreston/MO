@@ -1,5 +1,6 @@
 package mo.oa.io.mo.UI.pubboard;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -28,6 +29,7 @@ import mo.oa.io.mo.UI.Base.NoRefreshBaseFragment;
 import mo.oa.io.mo.Utils.LogUtils;
 import mo.oa.io.mo.Utils.OldDriverBus;
 import mo.oa.io.mo.Utils.PbUtils;
+import mo.oa.io.mo.Widget.MultiRefreshLayout;
 import mo.oa.io.mo.Widget.RecycleItemDecoration;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -44,8 +46,8 @@ public class Fragment_PubBoard extends CommBaseFragment {
     public int addLayoutView() {
         return R.layout.fragment_pubboard;
     }
-    @Bind(R.id.msg_rv)
-    RecyclerView recyclerView;
+//    @Bind(R.id.msg_rv)
+    public static RecyclerView recyclerView;
     private boolean isprepery;
     private List<NoticeEntity> list;
     private Bundle intent;
@@ -73,14 +75,9 @@ public class Fragment_PubBoard extends CommBaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(addLayoutView(),container,false);
         isprepery = true;
-        ButterKnife.bind(this,view);
+//        ButterKnife.bind(this,view);
+        initView(view);
         LazyLoad();
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         TakeBus();
         list = new ArrayList<>();
         userid = PbUtils.getLoginMessageUserID(mAct);
@@ -93,7 +90,12 @@ public class Fragment_PubBoard extends CommBaseFragment {
         OnClickListener();
         endItem = currentendItem;
         getRefrsh();
+        if(clickViewToTop!=null){
+            clickViewToTop.clickToTop(recyclerView,Fragment_PubBoard.class);
+        }
+        return view;
     }
+
 
     void OnClickListener(){
         pubAdapter.setClickListener(new PubAdapter.ClickListener() {
@@ -138,11 +140,16 @@ public class Fragment_PubBoard extends CommBaseFragment {
 
     }
 
+    void initView(View view){
+        recyclerView = (RecyclerView) view.findViewById(R.id.pub_rv);
+        multiRefreshLayout = (MultiRefreshLayout) view.findViewById(R.id.pub_refresh_layout);
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         Unsubscrib();
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
     //获取数据
     @Override
@@ -191,5 +198,4 @@ public class Fragment_PubBoard extends CommBaseFragment {
                   }
               });
     }
-
 }

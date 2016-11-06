@@ -20,6 +20,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" ></activity>
+        <activity android:name=".UI.Searcher.Searcher_Activity" android:launchMode="singleTop" android:configChanges="orientation|keyboardHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+            <meta-data android:name="android.app.searchable" android:resource="@xml/searchable"/>
+        </activity>
         <activity android:name=".UI.WelCome.ViewPagerAct" android:screenOrientation="nosensor"></activity>
         <activity android:name=".UI.login.Login_UI"
             android:configChanges="keyboard|keyboardHidden|orientation"

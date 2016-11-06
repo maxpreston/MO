@@ -345,7 +345,7 @@
     <string name="msg_notify">通知消息</string>
     <string name="msg_default">默认</string>
 
-
+    <string name="searchable_hint">在此键入搜索内容</string>
     <string name="DATA_FROM_DISK">数据来自磁盘</string>
     <string name="DATA_FROM_CACHE">数据来自内存</string>
     <string name="DATA_FROM_NET">数据来自网络</string>

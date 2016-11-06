@@ -1,5 +1,6 @@
 package mo.oa.io.mo.UI.message;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -30,6 +31,7 @@ import mo.oa.io.mo.Statics.StaticsValue;
 import mo.oa.io.mo.UI.Base.CommBaseFragment;
 import mo.oa.io.mo.Utils.OldDriverBus;
 import mo.oa.io.mo.Utils.PbUtils;
+import mo.oa.io.mo.Widget.MultiRefreshLayout;
 import mo.oa.io.mo.Widget.RecycleItemDecoration;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.exceptions.OnErrorThrowable;
@@ -42,8 +44,8 @@ import rx.schedulers.Schedulers;
 
 public class Fragment_Message extends CommBaseFragment{
 
-    @Bind(R.id.msg_rv)
-    public RecyclerView recyclerView;
+//    @Bind(R.id.msg_rv)
+    public static  RecyclerView recyclerView;
     List<MessageEntitys> list;
     private TYAdapter tyAdapter = new TYAdapter();
     private int CurrentStartItem = 1;
@@ -54,6 +56,7 @@ public class Fragment_Message extends CommBaseFragment{
     private String userid;
     private boolean IsTotal = false;
     private boolean isprepery;
+    private boolean isFirstLoadData = true;
     @Override
     public int addLayoutView() {
         return R.layout.fragment_msg;
@@ -61,45 +64,56 @@ public class Fragment_Message extends CommBaseFragment{
 
     @Override
     public void LazyLoad() {
+        Log.e("lazyload-->","true");
         if(!isprepery||!ISVISIble){
             return;
         }
+            userid = PbUtils.getLoginMessageUserID(mAct);
+            list = new ArrayList<>();
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                setIsRefresh(true);
+//            }
+//        },100);
+            DelayTime();
+            final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mAct);
+            recyclerView.setLayoutManager(linearLayoutManager);
+            recyclerView.setAdapter(tyAdapter);
+            //添加分割线
+            recyclerView.addItemDecoration(new RecycleItemDecoration(mAct,RecycleItemDecoration.VERTICAL_LIST));
+            recyclerView.setItemAnimator(new DefaultItemAnimator());
+            recyclerView.addOnScrollListener(OnBottomListener(linearLayoutManager));
+            recycleViewClick();
+            LoadNetData(userid,String.valueOf(CurrentStartItem),String.valueOf(CurrentEndItem),msgType);
+            if(clickViewToTop!=null){
+                clickViewToTop.clickToTop(recyclerView,Fragment_Message.class);
+            }
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(addLayoutView(),container,false);
-        ButterKnife.bind(this,view);
+//        ButterKnife.bind(this,view);
+        initView(view);
         isprepery = true;
+        Log.e("oncreateview-->","true");
         LazyLoad();
         return view;
+    }
+
+    void initView(View view){
+        recyclerView = (RecyclerView) view.findViewById(R.id.msg_rv);
+        multiRefreshLayout = (MultiRefreshLayout) view.findViewById(R.id.comm_refresh_layout);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //刚进入界面设置为刷新状态
-        userid = PbUtils.getLoginMessageUserID(mAct);
-        list = new ArrayList<>();
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                setIsRefresh(true);
-            }
-        },100);
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mAct);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(tyAdapter);
-        //添加分割线
-        recyclerView.addItemDecoration(new RecycleItemDecoration(mAct,RecycleItemDecoration.VERTICAL_LIST));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addOnScrollListener(OnBottomListener(linearLayoutManager));
-        recycleViewClick();
-        LoadNetData(userid,String.valueOf(CurrentStartItem),String.valueOf(CurrentEndItem),msgType);
-        if(clickViewToTop!=null){
-            clickViewToTop.clickToTop(recyclerView);
-        }
+        Log.e("onviewcreated-->","true");
+
     }
 
     RecyclerView.OnScrollListener OnBottomListener(final LinearLayoutManager linearLayoutManager){
@@ -107,6 +121,7 @@ public class Fragment_Message extends CommBaseFragment{
         return new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                isFirstLoadData = false;
                 boolean isBottom = (linearLayoutManager.findLastVisibleItemPosition()+1) >= tyAdapter.getItemCount();
                 if(!multiRefreshLayout.isRefreshing()&&isBottom){
                     if(!firstTimeTouchBottom){
@@ -129,12 +144,13 @@ public class Fragment_Message extends CommBaseFragment{
     @Override
     public void onDestroy() {
         super.onDestroy();
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
     //默认类型
     @OnClick(R.id.msg_default_btn)
     void defaultbtnClick(){
         msgType = "";
+        isFirstLoadData = true;
         CurrentEndItem = 15;
         LoadNetData(userid,String.valueOf(CurrentStartItem),String.valueOf(CurrentEndItem),msgType);
     }
@@ -143,6 +159,7 @@ public class Fragment_Message extends CommBaseFragment{
     void RcBtntnClick(){
         msgType = StaticsValue.RCMSG;
         CurrentEndItem = 15;
+        isFirstLoadData = true;
         LoadNetData(userid,String.valueOf(CurrentStartItem),String.valueOf(CurrentEndItem), msgType);
     }
     //通知类型
@@ -150,6 +167,7 @@ public class Fragment_Message extends CommBaseFragment{
     void NotifyBtnClick(){
         msgType = StaticsValue.TZMSG;
         CurrentEndItem = 15;
+        isFirstLoadData = true;
         LoadNetData(userid,String.valueOf(CurrentStartItem),String.valueOf(CurrentEndItem),msgType);
     }
     //审批类型
@@ -157,6 +175,7 @@ public class Fragment_Message extends CommBaseFragment{
     void SpBtnClick(){
         msgType = StaticsValue.SPMSG;
         CurrentEndItem = 15;
+        isFirstLoadData = true;
         LoadNetData(userid,String.valueOf(CurrentStartItem),String.valueOf(CurrentEndItem),msgType);
     }
 
@@ -165,7 +184,7 @@ public class Fragment_Message extends CommBaseFragment{
         Log.e("startItem-->",startItem);
         Log.e("enditem-->",endItem);
         Log.e("msgtype-->",msgtype);
-        setIsRefresh(true);
+        DelayTime();
         IsTotal = false;
        // showSnackBar(,"正在加载...");
         sub = AllServices.
@@ -178,6 +197,8 @@ public class Fragment_Message extends CommBaseFragment{
                     public void call(MsgListModel backinfo) {
 //                        showToast("返回信息-->"+backinfo);
                         Log.e("返回了数据-->","");
+                        setIsRefresh(false);
+                        list.clear();
                         if (backinfo.flagStr.equals("false")) {
                             showToast("为查询到信息");
                         } else if(backinfo==null){
@@ -189,13 +210,11 @@ public class Fragment_Message extends CommBaseFragment{
 //                            } catch (InterruptedException e) {
 //                                e.printStackTrace();
 //                            }
-                            list.clear();
                             //获取总条目
                             totalCount = String.valueOf(backinfo.totalItem);
                             list = backinfo.list;
-                            tyAdapter.setItems(list);
-                            setIsRefresh(false);
                         }
+                        tyAdapter.setItems(list);
                     }
                 }, new Action1<Throwable>() {
                     @Override
@@ -247,5 +266,13 @@ public class Fragment_Message extends CommBaseFragment{
     public void getRefrsh() {
         CurrentEndItem = 15;
         LoadNetData(userid,String.valueOf(CurrentStartItem),String.valueOf(CurrentEndItem),msgType);
+    }
+    void DelayTime(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setIsRefresh(true);
+            }
+        },500);
     }
 }

@@ -25,8 +25,9 @@
     <item
         android:id="@+id/action_login"
         android:title="@string/Search"
+
         android:orderInCategory="1"
-        app:showAsAction="never"/>
+        />
 
     <item
         android:id="@+id/action_trending"
@@ -46,4 +47,5 @@
         android:title="@string/FeedBack"
         android:orderInCategory="4"
         app:showAsAction="never"/>
+
 </menu>

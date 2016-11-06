@@ -17,6 +17,8 @@ import com.jakewharton.rxbinding.view.RxView;
 import java.util.concurrent.TimeUnit;
 
 import mo.oa.io.mo.R;
+import mo.oa.io.mo.UI.message.Fragment_Message;
+import mo.oa.io.mo.UI.pubboard.Fragment_PubBoard;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
@@ -29,6 +31,7 @@ public abstract class ToolBarActvity extends BaseActivity implements CommBaseFra
     protected Toolbar toolbar;
     protected boolean IsHidden = false;
     abstract protected int provideLayoutid();
+
     //toolbarLayout点击事件
     public void ToolBarOnClick(){
         if(recyclerView!=null){
@@ -40,7 +43,6 @@ public abstract class ToolBarActvity extends BaseActivity implements CommBaseFra
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(provideLayoutid());
-
         toolbar = (Toolbar) findViewById(R.id.base_toolbar);
         if(toolbar==null){
             throw new IllegalStateException("toolbar或appbarLayout为空");
@@ -67,6 +69,7 @@ public abstract class ToolBarActvity extends BaseActivity implements CommBaseFra
                 actionBar.setDisplayHomeAsUpEnabled(true);
             }
         }
+        setCanBack(CanBack());
 //        if(Build.VERSION.SDK_INT>=21){
 //            appBarLayout.setElevation(10.6f);
 //        }
@@ -84,7 +87,9 @@ public abstract class ToolBarActvity extends BaseActivity implements CommBaseFra
     public boolean CanBack(){
         return false;
     }
-
+    public void setCanBack(boolean back){
+        canback = back;
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==android.R.id.home){
@@ -96,12 +101,27 @@ public abstract class ToolBarActvity extends BaseActivity implements CommBaseFra
     }
 
     @Override
-    public void clickToTop(RecyclerView view) {
-        recyclerView = view;
+    public void clickToTop(RecyclerView view,Class<?> T) {
+        if(T.getName().equals(Fragment_Message.class.getName())){
+            recyclerView = Fragment_Message.recyclerView;
+        }else{
+            recyclerView = Fragment_PubBoard.recyclerView;
+        }
+//        recyclerView = view;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    protected void setToolbarTitle(String title){
+        setTitle(title);
+    }
+    protected void setToolbarColor(int rescolor){
+        toolbar.setBackgroundResource(rescolor);
+    }
+    protected void addView(View view){
+        toolbar.addView(view);
     }
 }

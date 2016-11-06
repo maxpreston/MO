@@ -37,11 +37,11 @@ public abstract class CommBaseFragment extends Fragment implements SwipeRefreshI
     //提供布局View
     public abstract int addLayoutView();
     public OldDriverBus oldDriverBus;
-    public ClickViewToTop clickViewToTop;
+    protected ClickViewToTop clickViewToTop;
     public abstract void LazyLoad();
     protected boolean ISVISIble;
     protected void VISIBLE(){
-
+        LazyLoad();
     }
     protected void INVISIBLE(){
 
@@ -119,7 +119,6 @@ public abstract class CommBaseFragment extends Fragment implements SwipeRefreshI
         }else{
             throw new IllegalArgumentException("viewToTop为null");
         }
-
     }
 
     @Override
@@ -204,7 +203,7 @@ public abstract class CommBaseFragment extends Fragment implements SwipeRefreshI
     }
 
     public interface ClickViewToTop{
-        public void clickToTop(RecyclerView view);
+        public void clickToTop(RecyclerView view,Class<?> classtype);
     }
 
     public void setClickViewToTop(ClickViewToTop clickViewToTop) {

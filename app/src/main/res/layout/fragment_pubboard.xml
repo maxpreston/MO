@@ -15,6 +15,6 @@
         android:background="@color/lightgray"
         />
 
-    <include layout="@layout/comm_base_layout_refresh"/>
+    <include layout="@layout/pub_base_layout_refresh"/>
 
 </LinearLayout>

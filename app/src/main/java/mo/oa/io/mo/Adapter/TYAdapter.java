@@ -71,7 +71,8 @@ public class TYAdapter<T> extends RecyclerView.Adapter {
     //设置list
     public void setItems(List<MessageEntitys> l){
         this.list = l;
-        notifyItemRangeChanged(0,list.size());
+//        notifyItemRangeChanged(0,list.size());
+        notifyDataSetChanged();
     }
 
     @Override
